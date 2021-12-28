@@ -1,0 +1,11 @@
+[package]
+name = "nightcycle/typography"
+description = "A basic typography state constructor for easy management of UI text style"
+version = "1.0.0"
+authors = ["CJ Oyer <coyer@nightcycle.us>"]
+realm = "shared"
+registry = "https://github.com/upliftgames/wally-index"
+exclude = ["Packages", ".vscode"]
+
+[dependencies]
+fusion = "elttob/fusion@^0.1.1-beta"

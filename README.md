@@ -1,2 +1,2 @@
 # typography
-a basic typography state constructor used in some of my UI.
+A basic typography state constructor for easy management of UI text style.
