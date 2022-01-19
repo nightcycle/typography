@@ -2,13 +2,17 @@ local runService = game:GetService("RunService")
 if runService:IsServer() then return end
 local packages = script.Parent.Parent
 local fusion = require(packages:WaitForChild('fusion'))
-local camera = game.Workspace.CurrentCamera
-local viewportSizeY = fusion.State(camera.ViewportSize.Y)
 
-local viewportSizeChangeSignal = camera:GetPropertyChangedSignal("ViewportSize")
-viewportSizeChangeSignal:Connect(function()
+local viewportSizeY = fusion.State(420)
+
+if not runService:IsEdit() then
+	local camera = game.Workspace.CurrentCamera
 	viewportSizeY:set(camera.ViewportSize.Y)
-end)
+	local viewportSizeChangeSignal = camera:GetPropertyChangedSignal("ViewportSize")
+	viewportSizeChangeSignal:Connect(function()
+		viewportSizeY:set(camera.ViewportSize.Y)
+	end)
+end
 
 local maxVertResolution = 1200
 local minVertResolution = 300
