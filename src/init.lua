@@ -1,11 +1,11 @@
 local runService = game:GetService("RunService")
-if runService:IsServer() then return end
-local packages = script.Parent.Parent
+if runService:IsServer() and not runService:IsRunning() then return end
+local packages = script.Parent
 local fusion = require(packages:WaitForChild('fusion'))
 
 local viewportSizeY = fusion.State(420)
 
-if not runService:IsEdit() then
+if not runService:IsRunning() then
 	local camera = game.Workspace.CurrentCamera
 	viewportSizeY:set(camera.ViewportSize.Y)
 	local viewportSizeChangeSignal = camera:GetPropertyChangedSignal("ViewportSize")
@@ -20,7 +20,7 @@ local minVertResolution = 300
 local constructor = {}
 
 function constructor.new(fontState, minSizeState, maxSizeState)
-	if typeof(fontState) == "Enum" then fontState = fusion.State(fontState) end
+	if typeof(fontState) == "EnumItem" then fontState = fusion.State(fontState) end
 	if type(minSizeState) == "number" then minSizeState = fusion.State(minSizeState) end
 	if type(maxSizeState) == "number" then maxSizeState = fusion.State(maxSizeState) end
 	local _TextSize = fusion.Computed(function()
