@@ -1,11 +1,10 @@
 local runService = game:GetService("RunService")
-if runService:IsServer() and not runService:IsRunning() then return end
 local packages = script.Parent
 local fusion = require(packages:WaitForChild('fusion'))
 
 local viewportSizeY = fusion.State(420)
 
-if not runService:IsRunning() then
+if runService:IsClient() then
 	local camera = game.Workspace.CurrentCamera
 	viewportSizeY:set(camera.ViewportSize.Y)
 	local viewportSizeChangeSignal = camera:GetPropertyChangedSignal("ViewportSize")
